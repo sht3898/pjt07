@@ -470,18 +470,21 @@
 
 1. **영화 목록 페이지**
 
-   ![메인](C:\Users\student\Desktop\pjt07\images\영화조회페이지.png)
+   ![메인](./images/영화조회페이지.png)
 
    
 
 2. **영화 상세 페이지**
 
-   ![상세](C:\Users\student\Desktop\pjt07\images\영화상세보기.png)
+   ![상세](./images/영화상세보기.png)
 
    
 
 3. **프로필 페이지**
 
-   ![프로필](C:\Users\student\Desktop\pjt07\images\프로필.png)
+   ![프로필](./images/프로필.png)
 
+   ## 5. 회고
    
+   함께 프로젝트를 진행하면서 협업의 중요성을 느낄 수 있었습니다. 혼자했으면 기억 안나거나 어려워 했을 부분들에서 팀원의 도움을 받으니 더 수월하게 프로젝트를 완성할 수 있었습니다.
+
