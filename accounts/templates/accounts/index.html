@@ -1,0 +1,8 @@
+{% extends 'movies/base.html' %}
+{% block body %}
+{% for user in users %}
+<h1>
+  <a href="{% url 'accounts:detail' user.pk %}">{{ user.username }}</a>
+</h1>
+{% endfor %}
+{% endblock %}

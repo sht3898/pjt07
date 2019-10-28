@@ -1,0 +1,38 @@
+{% extends 'movies/base.html' %}
+{% block body %}
+<h1>
+  {{ user_profile.username }}의 페이지
+</h1>
+
+
+{% if user.is_authenticated %}
+  {% if user in user_profile.followers.all %}
+    <a href="{% url 'accounts:follow' user_profile.pk %}">unfollow</a>
+  {% else %}
+    <a href="{% url 'accounts:follow' user_profile.pk %}">follow</a>
+  {% endif %}
+{% endif %}
+<hr>
+
+
+<h2>내가 작성한 평점</h2>
+{% for review in user_profile.review_set.all %}
+  <p>내용 : {{ review.content }}, 평점: {{ review.score }}</p>
+{% empty %}
+  <h1>평점 정보가 없습니다.</h1>
+{% endfor %}
+<hr>
+
+
+<h2>내가 좋아하는 영화의 평점</h2>
+{% for movie in user_profile.like_movies.all %}
+  <h3>
+    {{ movie.title }}
+  </h3>  
+  {% for review in movie.review_set.all %}
+    <p>내용 : {{ review.content }}, 평점: {{ review.score }}</p>
+  {% endfor %}
+  {% empty %}
+  <h1>좋아하는 영화가 없습니다.</h1>
+{% endfor %}
+{% endblock %}

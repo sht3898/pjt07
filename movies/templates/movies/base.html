@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <h1>
+    <a href="{% url 'movies:index' %}">홈</a>
+  </h1>
+  {% if user.is_authenticated %}
+  <h1>
+    <a href="{% url 'accounts:logout' %}">로그아웃</a>
+  </h1>
+  {% else %}
+  <h1>
+    <a href="{% url 'accounts:signup' %}">회원가입</a>
+    <a href="{% url 'accounts:login' %}">로그인</a>
+  </h1>
+  {% endif %}
+  <h1>
+    <a href="{% url 'accounts:index' %}">유저 목록</a>
+  </h1>
+  <hr>
+  {% block body %}
+  {% endblock %}
+</body>
+</html>

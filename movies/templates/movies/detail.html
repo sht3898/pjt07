@@ -1,0 +1,45 @@
+{% extends 'movies/base.html' %}
+{% block body %}
+  <h1>{{movie.title}}</h1>
+
+  {% if user.is_authenticated %}
+  <form action="{% url 'movies:like' movie.pk %}" method="POST">
+    {% csrf_token %}
+    {% if user in movie.like_users.all %}
+    <input type="submit" value="좋아요 취소">
+    {% else %}
+    <input type="submit" value="좋아요">
+    {% endif %}
+  </form>
+  {% endif %}
+  
+
+  <p>누적관객수: {{movie.audience}}명</p>
+  <img src="{{movie.poster_url}}" alt="" style="width:30%">
+  <h2>내용</h2>
+  <p>{{movie.description}}</p>
+  <hr>
+
+
+  <form action="{% url 'movies:create_review' movie.pk %}" method="POST">
+    {% csrf_token %}
+    {{ review_form.as_p }}
+    <input type="submit" value="평점 작성">
+  </form>
+  <hr>
+
+  <h2>댓글</h2>
+  {% for review in movie.review_set.all %}
+    <p>{{review.user}}의 댓글: <b style="color:red">[{{ review.score }}]</b> {{ review.content }}</p>
+    {% if user == review.user %}
+      <form action="{% url 'movies:delete_review' movie.pk review.pk %}" method="POST">
+        {% csrf_token %}
+        <input type="submit" value="평점 삭제">
+      </form>
+    {% endif %}
+  {% empty %}
+  <p>평점이 없습니다. 첫 번째 평점을 남겨주세요.</p>
+  {% endfor %}
+
+  
+{% endblock %}
